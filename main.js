@@ -1,3 +1,4 @@
+
 const { Collection, ButtonBuilder } = require("discord.js");
 const { AtivarIntents } = require("./dist/FunctionsAll/PermissionAPI/StartIntents.js");
 const loadSlashCommands = require("./dist/util/SlashHandler.js");
@@ -53,23 +54,13 @@ async function startBot() {
   }
 }
 
-// Handler para interações com botões - CORRIGE "interação falhou"
 process.on("unhandledRejection", (error) => {
   // Ignora erros de interação expirada (causados por comandos duplicados)
   if (error?.code === 10062) return;
-  if (error?.code === 40001) {
-    console.warn("[AVISO] Erro de autenticação - verifique o token do bot");
-    return;
-  }
   console.error("Unhandled Promise Rejection:", error);
 });
-
 process.on("uncaughtException", (error) => {
   if (error?.code === 10062) return;
-  if (error?.code === 40001) {
-    console.warn("[AVISO] Erro de autenticação - verifique o token do bot");
-    return;
-  }
   console.error("Uncaught Exception:", error);
 });
 
